@@ -25,7 +25,7 @@ class Bio extends React.Component {
   }));
 
   componentDidMount() {
-    this.setState({ img: this.props.bio.student_profile_photo });
+    this.setState({ img: 'https://test-handshake.s3.amazonaws.com/profile_16' });
   }
 
   onSaveImage = () => {
@@ -34,11 +34,11 @@ class Bio extends React.Component {
     console.log('uploading...');
     fd.append('upl', this.state.selectedFile);
     axios
-      .post(`http://18.206.154.118:8080/api/student/upload/${id}`, fd)
+      .post(`http://localhost:3000/students/${id}/photo`, fd)
       .then(res => {
         if (res.status === 200) {
           this.setState({
-            img: 'https://test-handshake.s3.amazonaws.com/profile_' + id
+            img: new String('https://test-handshake.s3.amazonaws.com/profile_' + id)
           });
         }
       })

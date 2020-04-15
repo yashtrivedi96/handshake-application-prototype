@@ -1,5 +1,5 @@
 const express = require('express')
-const cors = require('cors')
+const cors = require('cors/lib')
 require('./db/mongoose')
 const studentRouter = require('./routers/student')
 const employerRouter = require('./routers/employer')
