@@ -10,15 +10,7 @@ class StudentItem extends React.Component {
   }
 
   componentDidMount() {
-    // const id = this.props.student.student_id;
-    // axios.get(`http://18.206.154.118:8080/api/student/education/${id}`).then((res)=> {
-    //         if(res.status === 200) {
-    //             console.log(res.data.result);
-    //             this.setState({education: res.data.result})
-    //         }
-    //     }).catch(err => {
-    //         console.log(err);
-    //     })
+
   }
 
   onClickHandler = () => {
@@ -28,7 +20,7 @@ class StudentItem extends React.Component {
         <Redirect
           to={{
             pathname: '/student/profile',
-            state: { id: this.props.student.student_id }
+            state: { student: this.props.student }
           }}
         />
       )

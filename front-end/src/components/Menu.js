@@ -16,6 +16,7 @@ const Menu = () => {
                     <Link to='/jobs' className="item">Jobs</Link>
                     <Link to='/event' className="item">Events</Link>
                     <Link to='/student/registered/event' className="item">Registered Events</Link>
+                    <Link to='/message' className="item">Messages</Link>
                     <Link to='/students' className="item">Students</Link>
                     <Link to='/my' className="item"><img class="ui avatar image" src={usericon}></img></Link>
                 </div>

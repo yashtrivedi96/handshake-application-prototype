@@ -1,9 +1,10 @@
 import React from 'react';
 import Header from '../Header';
 import ViewBio from './ViewBio';
-import axios from 'axios';
 import ViewEducationItem from './ViewEducationItem';
 import ViewExperienceItem from './ViewExperienceItem';
+// import { connect } from 'react-redux';
+// import { fetchStudentProfile } from '../../actions';
 
 class ViewStudentProfile extends React.Component {
   constructor() {
@@ -15,32 +16,33 @@ class ViewStudentProfile extends React.Component {
     };
   }
   componentDidMount() {
-    //const id = this.props.location.state.id;
-    const id = 17;
-    axios.get(`http://18.206.154.118:8080/api/student/${id}`).then(res => {
-      if (res.status === 200) {
-        console.log(res.data);
-        this.setState({ basicDetail: res.data.result });
-      }
-    });
 
-    axios
-      .get(`http://18.206.154.118:8080/api/student/education/${id}`)
-      .then(res => {
-        if (res.status === 200) {
-          console.log(res.data);
-          this.setState({ educationDetails: res.data.result });
-        }
-      });
 
-    axios
-      .get(`http://18.206.154.118:8080/api/student/experience/${id}`)
-      .then(res => {
-        if (res.status === 200) {
-          console.log(res.data);
-          this.setState({ experienceDetails: res.data.result });
-        }
-      });
+    // const id = 17;
+    // axios.get(`http://18.206.154.118:8080/api/student/${id}`).then(res => {
+    //   if (res.status === 200) {
+    //     console.log(res.data);
+    //     this.setState({ basicDetail: res.data.result });
+    //   }
+    // });
+
+    // axios
+    //   .get(`http://18.206.154.118:8080/api/student/education/${id}`)
+    //   .then(res => {
+    //     if (res.status === 200) {
+    //       console.log(res.data);
+    //       this.setState({ educationDetails: res.data.result });
+    //     }
+    //   });
+
+    // axios
+    //   .get(`http://18.206.154.118:8080/api/student/experience/${id}`)
+    //   .then(res => {
+    //     if (res.status === 200) {
+    //       console.log(res.data);
+    //       this.setState({ experienceDetails: res.data.result });
+    //     }
+    //   });
   }
   render() {
     return (
@@ -48,34 +50,19 @@ class ViewStudentProfile extends React.Component {
         <div>
           <Header />
         </div>
-        <div
-          style={{
-            float: 'left',
-            width: '30%',
-            marginTop: '20px',
-            marginLeft: '20px'
-          }}
-        >
-          <ViewBio bio={this.state.basicDetail} />
+        <div style={{float: 'left', width: '30%', marginTop: '20px', marginLeft: '20px'}}>
+          <ViewBio bio={this.props.location.state.student} />
         </div>
-        <div
-          style={{
-            float: 'left',
-            width: '60%',
-            marginLeft: '20px',
-            marginTop: '20px'
-          }}
-        >
+        <div style={{float: 'left', width: '60%', marginLeft: '20px', marginTop: '20px'}}>
           <div className='ui segment'>
             Career Objective
             <div>
-              {this.state.basicDetail.length !== 0 &&
-                this.state.basicDetail[0].career_objective}
+              {this.props.location.state.student.careerObjective}
             </div>
           </div>
           <div className='ui segment'>
             Education
-            {this.state.educationDetails.map(education => {
+            {this.props.location.state.student.education.map(education => {
               return (
                 <ViewEducationItem key={education} education={education} />
               );
@@ -83,7 +70,7 @@ class ViewStudentProfile extends React.Component {
           </div>
           <div className='ui segment'>
             Work Experience
-            {this.state.experienceDetails.map(experience => {
+            {this.props.location.state.student.experience.map(experience => {
               return (
                 <ViewExperienceItem key={experience} experience={experience} />
               );
@@ -94,5 +81,7 @@ class ViewStudentProfile extends React.Component {
     );
   }
 }
+
+
 
 export default ViewStudentProfile;

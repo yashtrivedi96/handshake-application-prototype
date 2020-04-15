@@ -114,10 +114,7 @@ class Bio extends React.Component {
     return (
       <div class='ui raised cards'>
         <div class='card'>
-          <div
-            className='ui small circular centered middle aligned image'
-            style={{ paddingTop: '15px', paddingBottom: '15px' }}
-          >
+          <div className='ui small circular centered middle aligned image' style={{ paddingTop: '15px', paddingBottom: '15px' }}>
             <img src={this.state.img} style={{ borderRadius: '50%' }} />
             {this.renderModal()}
           </div>
