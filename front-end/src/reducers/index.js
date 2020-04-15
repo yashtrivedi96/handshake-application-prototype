@@ -9,6 +9,7 @@ import companyEventsReducer from './companyEventsReducer';
 import filterJobsReducer from './filterJobsReducer';
 import filterStudentsReducer from './filterStudentsReducer';
 import filterEventsReducer from './filterEventsReducer';
+import filterApplicationsReducer from './filterApplicationsReducer';
 import chatReducer from './chatReducer';
 import messageReducer from './messageReducer';
 
@@ -23,6 +24,7 @@ export default combineReducers({
     filter: filterJobsReducer,
     studentsFilteredList: filterStudentsReducer,
     eventsFilteredList: filterEventsReducer,
+    applicationsFilteredList: filterApplicationsReducer,
     chats: chatReducer,
     conversation: messageReducer
 })

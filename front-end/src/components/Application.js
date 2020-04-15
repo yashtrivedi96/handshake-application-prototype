@@ -22,7 +22,7 @@ class Application extends React.Component {
   render() {
     const indexOfLastPost = this.state.currentPageNumber*5;
     const indexOfFirstPost = indexOfLastPost - 5;
-    const currentPosts = this.props.applications.slice(indexOfFirstPost, indexOfLastPost);
+    const currentPosts = this.props.filters.slice(indexOfFirstPost, indexOfLastPost);
     return (
       <div>
         <div>
@@ -41,7 +41,7 @@ class Application extends React.Component {
               );
             })}
             <div>
-            <Pagination postsPerPage={5} totalPosts={this.props.applications.length} paginate={this.paginate}/>
+            <Pagination postsPerPage={5} totalPosts={this.props.filters.length} paginate={this.paginate}/>
             </div>
           </div>
         </div>
@@ -51,11 +51,13 @@ class Application extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  if(!state.profile.applications) {
-    return {applications: []}
+  if(state.applicationsFilteredList) {
+    return {
+      filters: state.applicationsFilteredList
+    }
   }
   return {
-    applications: state.profile.applications
+    filters: []
   }
 }
 
