@@ -17,20 +17,6 @@ const ApplicationSideList = () => {
         </div>
       </div>
       <div className='item'>
-        <div className='header'>Schools</div>
-        <div class='ui checkbox' style={{marginBottom: '10px'}} >
-          <input type='checkbox' name='example' />
-          <label style={{fontSize: '13px'}} >San Jose State University Only</label>
-        </div>
-      </div>
-      <div className='item'>
-      <div className='header'>Alumini</div>
-        <div class='ui checkbox' style={{marginBottom: '10px'}} >
-          <input type='checkbox' name='example' />
-          <label style={{fontSize: '13px'}} >Alumini Only</label>
-        </div>
-      </div>
-      <div className='item'>
         <div className='header'>Support</div>
         <div className='menu'>
           <a className='item'>E-mail Support</a>
