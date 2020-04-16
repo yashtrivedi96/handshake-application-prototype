@@ -25,7 +25,7 @@ export const filterApplications = (applications) => {
     }
 }
 
-export const fetchJobs = () => async (dispatch, getState) => {
+export const fetchJobs = (studentId) => async (dispatch, getState) => {
     const response = await handshakeAPI.get('/jobs');
     dispatch({
         type: 'FETCH_JOBS',
@@ -33,6 +33,7 @@ export const fetchJobs = () => async (dispatch, getState) => {
     })
     
     dispatch(filterJobs(response.data));
+    dispatch(fetchStudentProfile(studentId));
 }
 
 export const filterJobs = (jobs) => {
@@ -99,7 +100,7 @@ export const fetchCompanyEvents = (companyName) => async dispatch => {
 }
 
 export const fetchChats = (studentId) => async dispatch => {
-    const response = await handshakeAPI.get(`/students/${studentId}/chats`);
+    const response = await handshakeAPI.get(`/chats/students/${studentId}`);
     dispatch({
         type: 'FETCH_CHATS',
         payload: response.data
@@ -116,9 +117,18 @@ export const fetchMessages = (chatId) => async dispatch => {
 }
 
 export const addMessages = (chatId, req) => async dispatch => {
-    const response = await handshakeAPI.put(`chats/${chatId}`, req);
+    const response = await handshakeAPI.put(`/chats/${chatId}`, req);
     dispatch({
         type: 'ADD_MESSAGES',
         payload: response.data
     })
+}
+
+export const applyJobs = (jobId, req) => async dispatch => {
+    const response = await handshakeAPI.put(`/applications/new/${jobId}`, req);
+    dispatch({
+        type: 'APPLY_JOBS',
+        payload: response.data  
+    })
+    console.log("reponse ", response.data)
 }

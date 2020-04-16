@@ -11,25 +11,14 @@ class JobItemStudent extends React.Component {
   }
 
   componentDidMount() {
-    // const id = this.props.job.company_id;
-    // axios
-    //   .get(`http://18.206.154.118:8080/api/employer/${id}`)
-    //   .then(res => {
-    //     if (res.status === 200) {
-    //       console.log(res.data.result);
-    //       this.setState({ company_name: res.data.result[0].company_name });
-    //     }
-    //   })
-    //   .catch(err => {
-    //     console.log(err);
-    //   });
+
   }
-  onClickHandler = () => {
-    const id = 16;
-  };
+  // onClickHandler = () => {
+  //   const id = 16;
+  // };
 
   onSelectHandler = () => {
-    this.props.onSelectJob(this.props.job, this.state.company_name);
+    this.props.onSelectJob(this.props.job);
   };
 
   render() {
