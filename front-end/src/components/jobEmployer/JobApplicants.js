@@ -1,6 +1,6 @@
 import React from 'react';
 import { Redirect } from 'react-router';
-import Header from '../Header';
+import CompanyHeader from '../CompanyHeader';
 import JobItemApplicant from './JobItemApplicant';
 import Pagination from '../Pagination';
 
@@ -29,7 +29,7 @@ class JobApplicants extends React.Component {
       <div>
         {this.state.redirect}
         <div>
-          <Header />
+          <CompanyHeader />
         </div>
         <div className='ui segment' style={{ marginTop: '0px', paddingLeft: '40px' }}>
           <b>
