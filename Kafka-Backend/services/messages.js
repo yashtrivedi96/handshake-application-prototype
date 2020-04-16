@@ -1,6 +1,7 @@
 const Chat = require('../models/chat');
 
 createAMessage = async (msg, callback) => {
+  console.log('inside');
   var res = {};
   const chat = new Chat(msg);
   try {

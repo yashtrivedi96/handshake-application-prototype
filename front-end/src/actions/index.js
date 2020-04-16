@@ -100,11 +100,12 @@ export const fetchCompanyEvents = (companyName) => async dispatch => {
 }
 
 export const fetchChats = (studentId) => async dispatch => {
-    const response = await handshakeAPI.get(`/chats/students/${studentId}`);
+    const response = await handshakeAPI.get(`/students/${studentId}/chats`);
     dispatch({
         type: 'FETCH_CHATS',
         payload: response.data
     })
+    console.log("chats", response.data)
 }
 
 export const fetchMessages = (chatId) => async dispatch => {
@@ -114,6 +115,15 @@ export const fetchMessages = (chatId) => async dispatch => {
         type: 'FETCH_MESSAGES',
         payload: response.data
     })
+}
+
+export const createChats = (req) => async dispatch => {
+    const response = await handshakeAPI.post('/chats', req);
+    dispatch({
+        type: 'CREATE_CHATS',
+        payload: response.data
+    })
+    console.log('create');
 }
 
 export const addMessages = (chatId, req) => async dispatch => {

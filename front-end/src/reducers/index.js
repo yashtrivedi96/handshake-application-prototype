@@ -12,6 +12,7 @@ import filterEventsReducer from './filterEventsReducer';
 import filterApplicationsReducer from './filterApplicationsReducer';
 import chatReducer from './chatReducer';
 import messageReducer from './messageReducer';
+import createChatsReducer from './createChatsReducer';
 
 export default combineReducers({
     profile: profileReducer,
@@ -26,6 +27,7 @@ export default combineReducers({
     eventsFilteredList: filterEventsReducer,
     applicationsFilteredList: filterApplicationsReducer,
     chats: chatReducer,
-    conversation: messageReducer
+    conversation: messageReducer,
+    firstChat: createChatsReducer
 })
 

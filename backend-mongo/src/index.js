@@ -9,7 +9,7 @@ const chatRouter = require('./routers/chat')
 
 
 const app = express()
-app.use(cors({ origin: 'http://localhost:3001', credentials: true }))
+app.use(cors({ origin: 'http://localhost:3002', credentials: true }))
 app.use(express.json({ extended: false }))
 const port = process.env.PORT || 3000
 
