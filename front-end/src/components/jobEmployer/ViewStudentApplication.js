@@ -1,8 +1,9 @@
 import React from 'react';
 import CompanyHeader from '../CompanyHeader';
+import {Link} from 'react-router-dom';
 import {Button} from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import { updateStatus } from '../../actions';
+import { updateStatus, fetchStudentProfile } from '../../actions';
 
 
 class ViewStudentApplication extends React.Component {
@@ -12,10 +13,10 @@ class ViewStudentApplication extends React.Component {
     }
 
     componentDidMount() {
-
+        this.props.fetchStudentProfile(this.props.location.state.student.studentId)
     }
     onAccept = () => {
-        const studentId = this.props.location.state.student.stuedntId;
+        const studentId = this.props.location.state.student.studentId;
         const reqObj = {
             appllicationId: this.props.location.state.student._id,
             status: 'Reviewed'
@@ -24,7 +25,7 @@ class ViewStudentApplication extends React.Component {
     }
 
     onReject = () => {
-        const studentId = this.props.location.state.student.stuedntId;
+        const studentId = this.props.location.state.student.studentId;
         const reqObj = {
             appllicationId: this.props.location.state.student._id,
             status: 'Declined'
@@ -43,7 +44,7 @@ class ViewStudentApplication extends React.Component {
                 </div>
                 <div className='ui segment' style={{width: '45%', float: 'left', marginLeft: '20px', marginTop: '20px'}}>
                     <div>
-                        <h3>{this.props.location.state.student.name}</h3>
+                        <Link to={{pathname: '/student/profile', state: { student: this.props.profile }}}><h3>{this.props.location.state.student.name}</h3></Link>
                     </div>
                     <div>
                         University: {this.props.location.state.student.university}
@@ -52,7 +53,7 @@ class ViewStudentApplication extends React.Component {
                         Major: {this.props.location.state.student.major}
                     </div>
                     <div>
-                        GPA: {this.props.location.state.student.cgpa}
+                        ID: {this.props.location.state.student.studentId}
                     </div>
                     <div style={{marginTop: '50px'}}>
                         <div>
@@ -66,4 +67,10 @@ class ViewStudentApplication extends React.Component {
     }
 }
 
-export default connect(null, { updateStatus })(ViewStudentApplication);
+const mapStateToProps = (state) => {
+    return {
+        profile: state.profile
+    }
+} 
+
+export default connect(mapStateToProps, { updateStatus, fetchStudentProfile })(ViewStudentApplication);

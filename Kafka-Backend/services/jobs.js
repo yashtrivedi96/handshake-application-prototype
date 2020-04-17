@@ -2,8 +2,15 @@ const JobPost = require('../models/job')
 
 const getAllJobs = async(msg, callback) => {
     var res = {}
+    const companyName = msg.companyName;
+    try {
+        if(companyName) {
+            const companyJobs = await JobPost.find({companyName: companyName});
+            res.status = 200
+            res.data = JSON.stringify(companyJobs)
+            callback(null, res)
+        }
 
-try {
         const posts = await JobPost.find({})
         res.status = 200
         res.data = JSON.stringify(posts)

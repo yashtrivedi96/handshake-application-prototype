@@ -6,7 +6,7 @@ const kafka = require('../kafka/client');
 
 router.get('/', (req, res) => {
     req.body.path="get-all-jobs"
- 
+    req.body.companyName = req.query.name;
    kafka.make_request('jobs', req.body, (err, results) => {
  
  

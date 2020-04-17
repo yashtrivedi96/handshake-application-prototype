@@ -13,7 +13,7 @@ class Application extends React.Component {
   }
 
   componentDidMount() {
-    const studentId = '5e87e9c65410160a6a5926e3';
+    const studentId = '5e996d140c49d423b10b0e68';
     this.props.fetchStudentProfile(studentId);
   }
 

@@ -1,9 +1,17 @@
 import handshakeAPI from '../apis/handshakeAPI';
 
 export const loginStudent = (req) => async dispatch => {
-    const response = await handshakeAPI.post('/students/login', req);
+    const response = await handshakeAPI.post('/student/login', req);
     dispatch({
         type: 'STUDENT_LOGIN',
+        payload: response.data
+    })
+}
+
+export const loginCompany = (req) => async dispatch => {
+    const response = await handshakeAPI.post('/company/login', req);
+    dispatch({
+        type: 'COMPANY_LOGIN',
         payload: response.data
     })
 }
@@ -152,7 +160,7 @@ export const applyJobs = (jobId, req) => async dispatch => {
 }
 
 export const updateStatus = (studentId, req) => async dispatch => {
-    const response = await handshakeAPI.put(`/applicarion/${studentId}`, req);
+    const response = await handshakeAPI.put(`/applications/${studentId}`, req);
     dispatch({
         type: 'UPDATE_STATUS',
         payload: response.data
