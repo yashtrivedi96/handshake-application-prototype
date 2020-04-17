@@ -32,8 +32,8 @@ const StudentSchema = new Schema({
         cgpa: String
     }],
     experience: [{
-        Company: String,
-        JobTitle: String,
+        company: String,
+        jobTitle: String,
         location: String,
         description: String,
         startDate: Date,

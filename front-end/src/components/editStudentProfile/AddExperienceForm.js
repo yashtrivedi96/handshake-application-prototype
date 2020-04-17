@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import { Dropdown } from 'semantic-ui-react';
+import { connect } from 'react-redux';
+import { updateStudentProfile } from '../../actions';
 
 const companyName = [
   { text: 'Google', value: 'Google' },
@@ -32,12 +34,12 @@ class AddExperienceForm extends React.Component {
   constructor() {
     super();
     this.state = {
-      company_name: '',
-      designation: '',
-      starting_date: '',
-      ending_date: '',
-      company_location: '',
-      work_summary: ''
+      company: '',
+      jobTitle: '',
+      startDate: '',
+      endDate: '',
+      location: '',
+      description: ''
     };
   }
   componentDidMount() {}
@@ -47,63 +49,67 @@ class AddExperienceForm extends React.Component {
 
   onSave = e => {
     e.preventDefault();
-    console.log(this.state);
-    axios
-      .post(
-        'http://18.206.154.118:8080/api/student/experience/17',
-        this.state,
-        { headers: { 'Content-Type': 'application/json' } }
-      )
-      .then(res => {
-        if (res.status === 200) {
-          console.log(res.data.result.insertId);
-          this.props.onAddExperience({
-            ...this.state,
-            experience_id: res.data.result.insertId,
-            student_id: 17
-          });
-        } else {
-          console.log(res);
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    const list = [...this.props.experience, this.state];
+    const studentId = '5e87e9c65410160a6a5926e3';
+    this.props.updateStudentProfile(studentId, {experience: list})
+    this.props.onAddExperience();
+    // console.log(this.state);
+    // axios
+    //   .post(
+    //     'http://18.206.154.118:8080/api/student/experience/17',
+    //     this.state,
+    //     { headers: { 'Content-Type': 'application/json' } }
+    //   )
+    //   .then(res => {
+    //     if (res.status === 200) {
+    //       console.log(res.data.result.insertId);
+    //       this.props.onAddExperience({
+    //         ...this.state,
+    //         experience_id: res.data.result.insertId,
+    //         student_id: 17
+    //       });
+    //     } else {
+    //       console.log(res);
+    //     }
+    //   })
+    //   .catch(err => {
+    //     console.log(err);
+    //   });
   };
 
   onChangeHandlerCompanyName = (e, { value }) => {
-    this.setState({ company_name: value }, () => {
-      console.log('Dropdown', this.state.company_name);
+    this.setState({ company: value }, () => {
+      console.log('Dropdown', this.state.company);
     });
   };
 
   onChangeHandlerDesignation = (e, { value }) => {
-    this.setState({ designation: value }, () => {
-      console.log('Dropdown', this.state.designation);
+    this.setState({ jobTitle: value }, () => {
+      console.log('Dropdown', this.state.jobTitle);
     });
   };
 
   onChangeHandlerFromDate = (e, { value }) => {
-    this.setState({ starting_date: value }, () => {
-      console.log('Dropdown', this.state.starting_date);
+    this.setState({ startDate: value }, () => {
+      console.log('Dropdown', this.state.startDate);
     });
   };
 
   onChangeHandlerToDate = (e, { value }) => {
-    this.setState({ ending_date: value }, () => {
-      console.log('Dropdown', this.state.ending_date);
+    this.setState({ endDate: value }, () => {
+      console.log('Dropdown', this.state.endDate);
     });
   };
 
   onChangeHandlerCompanyLocation = (e, { value }) => {
-    this.setState({ company_location: value }, () => {
-      console.log('Dropdown', this.state.company_location);
+    this.setState({ location: value }, () => {
+      console.log('Dropdown', this.state.location);
     });
   };
 
   onChangeHandlerWorkSummary = e => {
-    this.setState({ work_summary: e.target.value }, () => {
-      console.log('input', this.state.work_summary);
+    this.setState({ description: e.target.value }, () => {
+      console.log('input', this.state.description);
     });
   };
 
@@ -121,7 +127,7 @@ class AddExperienceForm extends React.Component {
                 search
                 selection
                 options={companyName}
-                value={this.state.company_name}
+                value={this.state.name}
                 onChange={this.onChangeHandlerCompanyName}
               />
             </div>
@@ -133,7 +139,7 @@ class AddExperienceForm extends React.Component {
                 search
                 selection
                 options={designation}
-                value={this.state.designation}
+                value={this.state.jobTitle}
                 onChange={this.onChangeHandlerDesignation}
               />
             </div>
@@ -145,7 +151,7 @@ class AddExperienceForm extends React.Component {
                 search
                 selection
                 options={fromDate}
-                value={this.state.starting_date}
+                value={this.state.startDate}
                 onChange={this.onChangeHandlerFromDate}
               />
             </div>
@@ -158,7 +164,7 @@ class AddExperienceForm extends React.Component {
                   search
                   selection
                   options={toDate}
-                  value={this.state.ending_date}
+                  value={this.state.endDate}
                   onChange={this.onChangeHandlerToDate}
                 />
               </div>
@@ -179,7 +185,7 @@ class AddExperienceForm extends React.Component {
               <label>Work Summary</label>
               <input
                 type='text'
-                value={this.state.cgpa}
+                value={this.state.description}
                 placeholder='Work Summary'
                 onChange={this.onChangeHandlerWorkSummary}
               />
@@ -199,4 +205,10 @@ class AddExperienceForm extends React.Component {
   }
 }
 
-export default AddExperienceForm;
+const mapStateToProps = (state) => {
+  return {
+    experience: state.profile.experience
+  }
+}
+
+export default connect(mapStateToProps, { updateStudentProfile })(AddExperienceForm);

@@ -40,7 +40,7 @@ class StudentProfile extends React.Component {
     this.setState({ showAddExperienceForm: !this.state.showAddExperienceForm });
   };
 
-  onAddExperience = experience => {
+  onAddExperience = () => {
     // console.log('new', experience);
     // const list = [...this.state.experienceDetails, experience];
     // console.log(list);
@@ -180,7 +180,7 @@ class StudentProfile extends React.Component {
               <div className='ui items'>
                 {this.props.profile.experience && this.props.profile.experience.map(experience => {
                   return (
-                    <Experience key={experience._id} onUpdateExperince={this.onUpdateExperince  } experience={experience} />
+                    <Experience key={experience._id} onUpdateExperience={this.onUpdateExperience  } experience={experience} />
                   );
                 })}
               </div>
