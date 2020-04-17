@@ -1,21 +1,26 @@
-import React from 'react'
-import { Dropdown } from 'semantic-ui-react'
+import React, { Component } from 'react'
+import { Button } from 'semantic-ui-react'
 
-const FilterButton = ({value}) => (
-  <Dropdown
-    text={value}
-    icon='filter'
-    floating
-    labeled
-    button
-    className='icon'
-  >
-    <Dropdown.Menu>
-      <Dropdown.Header icon='tags' content='Filter by tag' />
-      <Dropdown.Item>Ascending</Dropdown.Item>
-      <Dropdown.Item>Descending</Dropdown.Item>
-    </Dropdown.Menu>
-  </Dropdown>
-)
+class FilterButton extends Component {
+  state = {}
+  handleClick = () =>
+    this.setState((prevState) => ({ active: !prevState.active }), () => {
+      if(this.state.active) {
+        this.props.onSort(true);
+      } else {
+        this.props.onSort(false);
+      }
+    })
 
-export default FilterButton
+  render() {
+    const { active } = this.state
+
+    return (
+      <Button primary-basic style={{borderRadius: '25px'}} toggle active={active} onClick={this.handleClick}>
+        {this.props.value}
+      </Button>
+    )
+  }
+}
+
+export default FilterButton;

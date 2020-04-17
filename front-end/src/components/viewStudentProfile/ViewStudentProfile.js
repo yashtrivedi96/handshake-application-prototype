@@ -43,8 +43,8 @@ class ViewStudentProfile extends React.Component {
           
         },
         {
-          name: this.props.student.name,
-          userId: this.props.student._id
+          name: this.props.location.state.student.name,
+          userId: this.props.location.state.student._id
         }
       
       ]

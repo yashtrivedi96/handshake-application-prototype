@@ -40,7 +40,7 @@ export const fetchJobs = (studentId) => async (dispatch, getState) => {
         payload: response.data
     })
     
-    dispatch(filterJobs(response.data));
+    dispatch(filterJobs(response.data.reverse()));
     dispatch(fetchStudentProfile(studentId));
 }
 

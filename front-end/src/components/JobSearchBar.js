@@ -53,6 +53,18 @@ class JobSearchBar extends React.Component {
     
   }
 
+  onSort = (value) => {
+    if(value) {
+      const list = this.props.filters.reverse();
+      this.props.filterJobs(list);
+    } else {
+      const list = this.props.filters.reverse();
+      this.props.filterJobs(list);
+    }
+    
+  }
+
+
   onFilter = () => {
     const list = this.props.jobList.filter((item) => {
       if(item.job_title.toLowerCase().search(this.state.job) != -1 && item.job_category.search('Intern') != -1) {
@@ -106,8 +118,8 @@ class JobSearchBar extends React.Component {
           <ToggleButton value='Part-Time' onSelectHandler={this.onSelectHandler}></ToggleButton>
           <ToggleButton value='Internship' onSelectHandler={this.onSelectHandler}></ToggleButton>
           <ToggleButton value='On-Campus' onSelectHandler={this.onSelectHandler}></ToggleButton>
-          <FilterButton value='Application Deadline'/>
-          <FilterButton value='Posting Date' />
+          <FilterButton value='Application-Deadline' onSort={this.onSort}></FilterButton>
+          <FilterButton value='Posting Date' onSort={this.onSort}></FilterButton>
         </div>
       </div>
     );

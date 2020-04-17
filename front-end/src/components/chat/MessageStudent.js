@@ -10,7 +10,7 @@ class MessageStudent extends React.Component {
     state = {chatId: ''}
 
     componentDidMount() {
-        const studentID = '5e87e56a9bc9ba4b027cb3d6'
+        const studentID = '5e87e9c65410160a6a5926e3'
         this.props.fetchChats(studentID);
     }
 
