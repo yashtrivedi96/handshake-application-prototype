@@ -6,26 +6,28 @@ import { updateStudentProfile } from '../../actions'
 
 const university = [
   { text: 'San Jose State University', value: 'San Jose State University' },
-  {
-    text: 'University of Southern California',
-    value: 'University of Southern California'
-  },
-  { text: 'Mumbai University', value: 'Mumbai University' }
+  {text: 'University of Southern California', value: 'University of Southern California'},
+  {text: 'Columbia University', value: 'Columbia University'},
+  { text: 'Lincoln School', value: 'Lincoln School' }
 ];
 const degree = [
-  { text: 'Masters', value: 'masters' },
-  { text: 'Bachelors', value: 'bachelors' },
-  { text: 'BE', value: 'BE' }
+  { text: 'Masters', value: 'Masters' },
+  { text: 'Bachelors', value: 'Bachelors' }
 ];
 const major = [
-  { text: 'computer science', value: 'computer science' },
+  { text: 'Computer Science', value: 'Computer Science' },
+  { text: 'Commerce', value: 'Commerce' },
+  { text: 'Fashion', value: 'Fashion' },
   { text: 'Computer Engineering', value: 'Computer Engineering' },
-  { text: 'Software engineering', value: 'Software engineering' }
+  { text: 'Software Engineering', value: 'Software Engineering' }
 ];
 const year = [
-  { text: '2021', value: '2021' },
   { text: '2020', value: '2020' },
-  { text: '2016', value: '2016' }
+  { text: '2019', value: '2019' },
+  { text: '2018', value: '2018' },
+  { text: '2017', value: '2017' },
+  { text: '2016', value: '2016' },
+  { text: '2015', value: '2015' }
 ];
 
 class EditForm extends React.Component {
@@ -67,7 +69,7 @@ class EditForm extends React.Component {
       return education
     })
     console.log(list);
-    const studentId = '5e87e9c65410160a6a5926e3';
+    const studentId = '5e996d140c49d423b10b0e68';
     this.props.updateStudentProfile(studentId, {education: list})
     this.props.toggle();
   };

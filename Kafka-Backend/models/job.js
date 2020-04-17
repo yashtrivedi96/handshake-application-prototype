@@ -4,7 +4,10 @@ const Schema = mongoose.Schema;
 const JobPostSchema = new Schema({  
     companyName: String,
     title: String,
-    postingDate: Date,
+    postingDate: { 
+        type: Date,
+        default: Date.now()
+    },
     deadline: Date,
     location: String,
     salary: String,

@@ -39,7 +39,7 @@ class ViewStudentApplication extends React.Component {
                     <CompanyHeader />
                 </div>
                 <div style={{width: '50%', float: 'left', marginLeft: '20px', marginTop: '20px'}}>
-                <iframe src='https://test-handshake.s3.amazonaws.com/resume_17' height='700' width='100%'></iframe>
+                <iframe src='https://test-handshake.s3.amazonaws.com/resume_5e996d140c49d423b10b0e68' height='700' width='100%'></iframe>
                 </div>
                 <div className='ui segment' style={{width: '45%', float: 'left', marginLeft: '20px', marginTop: '20px'}}>
                     <div>

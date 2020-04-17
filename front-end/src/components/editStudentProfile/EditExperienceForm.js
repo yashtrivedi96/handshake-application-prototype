@@ -5,28 +5,38 @@ import { updateStudentProfile } from '../../actions';
 
 const companyName = [
   { text: 'Google', value: 'Google' },
+  { text: 'Fortunata Fashions', value: 'Fortunata Fashions'},
   { text: 'Tesla', value: 'Tesla' },
-  { text: 'Facebook', value: 'Facebook' }
+  { text: 'Central Perk', value: 'Central Perk' },
+  { text: 'Facebook', value: 'Facebook' },
+  { text: 'Amazon', value: 'Amazon' },
+  { text: 'Microsoft', value: 'Microsoft'}
 ];
 const designation = [
   { text: 'Application Developer', value: 'Application Developer' },
+  { text: 'Assistant', value: 'Assistant' },
   { text: 'Performance Engineer', value: 'Performance Engineer' },
-  { text: 'Software Engineer', value: 'Software Engineer' }
+  { text: 'Waitress', value: 'Waitress' },
+  { text: 'Software Engineer', value: 'Software Engineer' },
+  { text: 'Professor', value: 'Professor' }
 ];
 const fromDate = [
   { text: '2015', value: '2015' },
   { text: '2016', value: '2016' },
-  { text: '2017', value: '2017' }
+  { text: '2017', value: '2017' },
+  { text: '2018', value: '2018' }
 ];
 const toDate = [
+  { text: '2016', value: '2016' },
+  { text: '2017', value: '2017' },
   { text: '2018', value: '2018' },
   { text: '2019', value: '2019' },
   { text: '2020', value: '2020' }
 ];
 const location = [
-  { text: 'Mumbai', value: 'Mumbai' },
-  { text: 'San Jose', value: 'San Jose' },
-  { text: 'San Andreas', value: 'San Andreas' }
+  { text: 'New York', value: 'New York' },
+  { text: 'Seattle', value: 'Seattle' },
+  { text: 'san francisco', value: 'san francisco'}
 ];
 
 class EditExperienceForm extends React.Component {
@@ -87,7 +97,7 @@ class EditExperienceForm extends React.Component {
     //     console.log(err);
     //   });
     console.log(list);
-    const studentId = '5e87e9c65410160a6a5926e3';
+    const studentId = '5e996d140c49d423b10b0e68 ';
     this.props.updateStudentProfile(studentId, {experience: list})
     this.props.toggle();
   };

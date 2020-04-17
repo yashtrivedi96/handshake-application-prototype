@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import { Label, Icon } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { updateStudentProfile } from '../../actions';
@@ -20,7 +19,7 @@ class Skills extends React.Component {
     e.preventDefault();
     console.log(this.state.current_skill)
     const list = [...this.props.skill, this.state.current_skill];
-    const id = '5e87e9c65410160a6a5926e3'
+    const id = '5e996d140c49d423b10b0e68'
     this.props.updateStudentProfile(id, {skillSet: list})
     this.setState({ current_skill: '' });
   };
@@ -35,7 +34,7 @@ class Skills extends React.Component {
         return item;
       }
     });
-    const id = '5e87e9c65410160a6a5926e3'
+    const id = '5e996d140c49d423b10b0e68'
     this.props.updateStudentProfile(id, {skillSet: list})
   };
 

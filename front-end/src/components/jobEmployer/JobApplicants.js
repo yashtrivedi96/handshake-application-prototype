@@ -34,7 +34,7 @@ class JobApplicants extends React.Component {
         <div className='ui segment' style={{ marginTop: '0px', paddingLeft: '40px' }}>
           <b>
             <h3>
-              Applications for Job ID: {this.props.location.state.jobs[0]._id}
+              Applications for Job ID: {this.props.location.state.jobs[0].title}
             </h3>
           </b>
         </div>

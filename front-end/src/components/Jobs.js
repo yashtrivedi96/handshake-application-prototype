@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import Header from './Header';
@@ -39,7 +40,7 @@ class Jobs extends React.Component {
 
 
   componentDidMount() {
-    const studentId = '5e87e9c65410160a6a5926e3';
+    const studentId = '5e996d140c49d423b10b0e68';
     this.props.fetchJobs(studentId);
     this.setState({ selectedJob: this.props.jobs[0]})
    
@@ -61,36 +62,20 @@ class Jobs extends React.Component {
           }
     }
     this.props.applyJobs(this.state.selectedJob._id, reqObj);
-    // const id = 17;
-    // const fd = new FormData();
-    // console.log('uploading...');
-    // fd.append('upl', this.state.selectedFile);
-    // axios
-    //   .post(`http://18.206.154.118:8080/api/student/upload/resume/${id}`, fd)
-    //   .then(res => {
-    //     if (res.status === 200) {
-    //       axios
-    //         .post(
-    //           'http://18.206.154.118:8080/api/application',
-    //           {
-    //             application_status: 'pending',
-    //             application_date: 'Feb 2020',
-    //             student_id: id,
-    //             company_id: this.state.selectedJob.company_id,
-    //             job_id: this.state.selectedJob.job_id
-    //           },
-    //           { headers: { 'Content-Type': 'application/json' } }
-    //         )
-    //         .then(res => {
-    //           if (res.status === 200) {
-    //             console.log(res.data.result);
-    //           }
-    //         });
-    //     }
-    //   })
-    //   .catch(err => {
-    //     console.log(err);
-    //   });
+    const id = '5e996d140c49d423b10b0e68';
+    const fd = new FormData();
+    console.log('uploading...');
+    fd.append('upl', this.state.selectedFile);
+    axios
+    .post(`http://localhost:3000/students/${id}/resume`, fd)
+      .then(res => {
+        if (res.status === 200) {
+          console.log(res);
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   onSelectFile = e => {
@@ -144,7 +129,13 @@ class Jobs extends React.Component {
             <div>Job category: {this.state.selectedJob && this.state.selectedJob.category}</div>
             <div>Description: {this.state.selectedJob && this.state.selectedJob.jobDescription}</div>
             <div>
-              Job Requirements: {}
+              Job Location: {this.state.selectedJob && this.state.selectedJob.location}
+            </div>
+            <div>
+              Deadline: {this.state.selectedJob && this.state.selectedJob.deadline}
+            </div>
+            <div>
+              Posting Date: {this.state.selectedJob && this.state.selectedJob.postingDate}
             </div>
             <div>
               <input

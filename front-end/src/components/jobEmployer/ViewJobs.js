@@ -12,7 +12,7 @@ class ViewJobs extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchCompanyJobs('Intel');
+    this.props.fetchCompanyJobs('Ralph Lauren');
   }
 
   paginate = number => this.setState({currentPageNumber: number});

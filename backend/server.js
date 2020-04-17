@@ -5,16 +5,16 @@ const cors = require('cors');
 
 
 app.use(express.json({extended:false}));    
-app.use(cors({origin:'http://localhost:3002', credentials:true}));
+app.use(cors({origin:true, credentials:true}));
 
-app.use(function(request, response, next) {
-    response.setHeader('Access-Control-Allow-Origin', 'http://localhost:3002');
-    response.setHeader('Access-Control-Allow-Credentials', 'true');
-    response.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT,DELETE');
-    response.setHeader('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers');
-    response.setHeader('Cache-Control', 'no-cache');
-    next();
-});
+// app.use(function(request, response, next) {
+//     response.setHeader('Access-Control-Allow-Origin', 'http://localhost:3002');
+//     response.setHeader('Access-Control-Allow-Credentials', 'true');
+//     response.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT,DELETE');
+//     response.setHeader('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers');
+//     response.setHeader('Cache-Control', 'no-cache');
+//     next();
+// });
 
 app.get('/', (request, response) => response.send('API Test Run Successful'));
 

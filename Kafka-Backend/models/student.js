@@ -16,6 +16,7 @@ const StudentSchema = new Schema({
         required: true
     },
     major: String,
+    collegeName: String,
     contactNumber: Number,
     dateOfBirth: Date,
     city: String,
@@ -32,8 +33,8 @@ const StudentSchema = new Schema({
         cgpa: String
     }],
     experience: [{
-        Company: String,
-        JobTitle: String,
+        company: String,
+        jobTitle: String,
         location: String,
         description: String,
         startDate: Date,

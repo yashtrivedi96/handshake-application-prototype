@@ -35,8 +35,7 @@ class JobItemStudent extends React.Component {
           <div className='content'>
             <a className='header'>
               <h4>
-                {this.props.job.title} | {this.props.job.companyName} | (Job
-                ID: {this.props.job._id})
+                {this.props.job.title} | {this.props.job.companyName}
               </h4>
             </a>
             <div className='meta'>

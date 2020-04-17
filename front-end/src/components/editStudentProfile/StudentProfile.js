@@ -24,7 +24,7 @@ class StudentProfile extends React.Component {
     };
   }
   componentDidMount() {
-    const id = '5e87e9c65410160a6a5926e3';
+    const id = '5e996d140c49d423b10b0e68';
     this.props.fetchStudentProfile(id);
   }
 
@@ -57,7 +57,7 @@ class StudentProfile extends React.Component {
   };
 
   onSaveTextArea = () => {
-    const studentId = '5e87e9c65410160a6a5926e3'
+    const studentId = '5e996d140c49d423b10b0e68'
     this.props.updateStudentProfile(studentId, {careerObjective: this.state.tempCareerObjective})
     this.setState({ showTextFrom: !this.state.showTextFrom });
   };
