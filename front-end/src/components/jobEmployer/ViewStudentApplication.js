@@ -1,7 +1,8 @@
 import React from 'react';
 import CompanyHeader from '../CompanyHeader';
 import {Button} from 'semantic-ui-react';
-import axios from 'axios';
+import { connect } from 'react-redux';
+import { updateStatus } from '../../actions';
 
 
 class ViewStudentApplication extends React.Component {
@@ -14,11 +15,21 @@ class ViewStudentApplication extends React.Component {
 
     }
     onAccept = () => {
-        
+        const studentId = this.props.location.state.student.stuedntId;
+        const reqObj = {
+            appllicationId: this.props.location.state.student._id,
+            status: 'Reviewed'
+        }
+        this.props.updateStatus(studentId, reqObj);
     }
 
     onReject = () => {
-        
+        const studentId = this.props.location.state.student.stuedntId;
+        const reqObj = {
+            appllicationId: this.props.location.state.student._id,
+            status: 'Declined'
+        }
+        this.props.updateStatus(studentId, reqObj);
     }
     render() {
         
@@ -32,21 +43,21 @@ class ViewStudentApplication extends React.Component {
                 </div>
                 <div className='ui segment' style={{width: '45%', float: 'left', marginLeft: '20px', marginTop: '20px'}}>
                     <div>
-                        <h3>{this.props.location.state.student.student_name}</h3>
+                        <h3>{this.props.location.state.student.name}</h3>
                     </div>
                     <div>
-                        University: {this.props.location.state.student.student_college_name}
+                        University: {this.props.location.state.student.university}
                     </div>
                     <div>
                         Major: {this.props.location.state.student.major}
                     </div>
                     <div>
-                        
+                        GPA: {this.props.location.state.student.cgpa}
                     </div>
                     <div style={{marginTop: '50px'}}>
                         <div>
-                            <Button primary onClick={this.onAccept}>Accept</Button>
-                            <Button color='red' onClick={this.onReject}>Reject</Button>
+                            <Button primary onClick={this.onAccept}>Reviewed</Button>
+                            <Button color='red' onClick={this.onReject}>Declined</Button>
                         </div>
                     </div>
                 </div>
@@ -55,4 +66,4 @@ class ViewStudentApplication extends React.Component {
     }
 }
 
-export default ViewStudentApplication;
+export default connect(null, { updateStatus })(ViewStudentApplication);

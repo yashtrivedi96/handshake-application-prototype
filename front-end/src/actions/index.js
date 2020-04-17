@@ -142,3 +142,11 @@ export const applyJobs = (jobId, req) => async dispatch => {
     })
     console.log("reponse ", response.data)
 }
+
+export const updateStatus = (studentId, req) => async dispatch => {
+    const response = await handshakeAPI.put(`/applicarion/${studentId}`, req);
+    dispatch({
+        type: 'UPDATE_STATUS',
+        payload: response.data
+    })
+}

@@ -41,10 +41,10 @@ class StudentProfile extends React.Component {
   };
 
   onAddExperience = experience => {
-    console.log('new', experience);
-    const list = [...this.state.experienceDetails, experience];
-    console.log(list);
-    this.setState({ experienceDetails: list });
+    // console.log('new', experience);
+    // const list = [...this.state.experienceDetails, experience];
+    // console.log(list);
+    // this.setState({ experienceDetails: list });
     this.setState({ showAddExperienceForm: !this.state.showAddExperienceForm });
   };
 
@@ -125,14 +125,7 @@ class StudentProfile extends React.Component {
         <div>
           <Header />
         </div>
-        <div
-          style={{
-            float: 'left',
-            width: '25%',
-            marginTop: '20px',
-            marginLeft: '10%'
-          }}
-        >
+        <div style={{float: 'left', width: '25%', marginTop: '20px', marginLeft: '10%'}}>
           <div style={{ marginBottom: '20px' }}>
             <Bio bio={this.props.profile} />
           </div>
@@ -140,22 +133,11 @@ class StudentProfile extends React.Component {
             <Skills />
           </div>
         </div>
-        <div
-          style={{
-            float: 'left',
-            width: '52.5%',
-            marginLeft: '20px',
-            marginTop: '20px'
-          }}
-        >
+        <div style={{float: 'left', width: '52.5%', marginLeft: '20px', marginTop: '20px'}}>
           <div style={{ marginBottom: '20px' }}>
             <div className='ui raised segment'>
               <b>My Journey</b>
-              <i
-                className='pencil alternate icon'
-                style={{ float: 'right' }}
-                onClick={this.onAddJourney}
-              ></i>
+              <i className='pencil alternate icon' style={{ float: 'right' }} onClick={this.onAddJourney} ></i>
               <div style={{ marginTop: '10px' }}>
                 {!this.state.showTextFrom &&
                       <p style={{ fontSize: '20px' }}>
@@ -182,18 +164,12 @@ class StudentProfile extends React.Component {
               </div>
               <div>
                 {!this.state.showAddForm && (
-                  <button
-                    class='fluid ui button'
-                    onClick={this.onAddSchoolClick}
-                  >
+                  <button class='fluid ui button' onClick={this.onAddSchoolClick} >
                     Add School
                   </button>
                 )}
                 {this.state.showAddForm && (
-                  <AddForm
-                    onAddSchool={this.onAddSchool}
-                    toggle={this.onAddSchoolClick}
-                  />
+                  <AddForm onAddSchool={this.onAddSchool} toggle={this.onAddSchoolClick}/>
                 )}
               </div>
             </div>
@@ -202,9 +178,9 @@ class StudentProfile extends React.Component {
             <div className='ui raised segment'>
               <b>Work & Volunteer Experience</b>
               <div className='ui items'>
-                {this.state.experienceDetails.map(experience => {
+                {this.props.profile.experience && this.props.profile.experience.map(experience => {
                   return (
-                    <Experience key={experience} experience={experience} />
+                    <Experience key={experience._id} onUpdateExperince={this.onUpdateExperince  } experience={experience} />
                   );
                 })}
               </div>

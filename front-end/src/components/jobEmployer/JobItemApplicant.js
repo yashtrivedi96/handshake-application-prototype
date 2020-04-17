@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 import alt from '../../images/alt.png';
 
@@ -40,7 +39,7 @@ class JobItemApplicant extends React.Component {
           <Link
             to={{
               pathname: '/company/job/student/application',
-              state: { student: this.state.student }
+              state: { student: this.props.application }
             }}
           >
             <button className='ui right floated basic primary button'>
