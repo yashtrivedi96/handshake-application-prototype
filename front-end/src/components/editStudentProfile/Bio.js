@@ -25,16 +25,16 @@ class Bio extends React.Component {
   }));
 
   componentDidMount() {
-    this.setState({ img: 'https://test-handshake.s3.amazonaws.com/profile_16' });
+    this.setState({ img: 'https://test-handshake.s3.amazonaws.com/profile_5e996d140c49d423b10b0e68' });
   }
 
   onSaveImage = () => {
-    const id = 16;
+    const id = '5e996d140c49d423b10b0e68';
     const fd = new FormData();
     console.log('uploading...');
     fd.append('upl', this.state.selectedFile);
     axios
-      .post(`http://localhost:3000/students/${id}/photo`, fd)
+      .post(`http://localhost:3000/applications/${id}/photo`, fd)
       .then(res => {
         if (res.status === 200) {
           this.setState({
@@ -115,7 +115,7 @@ class Bio extends React.Component {
       <div class='ui raised cards'>
         <div class='card'>
           <div className='ui small circular centered middle aligned image' style={{ paddingTop: '15px', paddingBottom: '15px' }}>
-            <img src={this.state.img} style={{ borderRadius: '50%' }} />
+            <img src={this.state.img} style={{ borderRadius: '' }} />
             {this.renderModal()}
           </div>
           <div class='content'>
