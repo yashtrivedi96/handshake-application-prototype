@@ -3,8 +3,8 @@ import Header from '../Header';
 import ViewBio from './ViewBio';
 import ViewEducationItem from './ViewEducationItem';
 import ViewExperienceItem from './ViewExperienceItem';
-// import { connect } from 'react-redux';
-// import { fetchStudentProfile } from '../../actions';
+import { connect } from 'react-redux';
+import { createChats } from '../../actions';
 
 class ViewStudentProfile extends React.Component {
   constructor() {
@@ -12,38 +12,47 @@ class ViewStudentProfile extends React.Component {
     this.state = {
       basicDetail: [],
       educationDetails: [],
-      experienceDetails: []
+      experienceDetails: [],
+      message: ''
     };
   }
   componentDidMount() {
 
-
-    // const id = 17;
-    // axios.get(`http://18.206.154.118:8080/api/student/${id}`).then(res => {
-    //   if (res.status === 200) {
-    //     console.log(res.data);
-    //     this.setState({ basicDetail: res.data.result });
-    //   }
-    // });
-
-    // axios
-    //   .get(`http://18.206.154.118:8080/api/student/education/${id}`)
-    //   .then(res => {
-    //     if (res.status === 200) {
-    //       console.log(res.data);
-    //       this.setState({ educationDetails: res.data.result });
-    //     }
-    //   });
-
-    // axios
-    //   .get(`http://18.206.154.118:8080/api/student/experience/${id}`)
-    //   .then(res => {
-    //     if (res.status === 200) {
-    //       console.log(res.data);
-    //       this.setState({ experienceDetails: res.data.result });
-    //     }
-    //   });
   }
+
+  addMessage = (e) => {
+    this.setState({message: e.target.value}, () => {
+      console.log(this.state.message)
+    })
+  }
+  
+  onClickHandler = (e) => {
+    e.preventDefault();
+    const name = 'Ralph Lauren'
+    const reqObj = {
+      messages: [
+        {
+          text: this.state.message,
+          sender: name
+        }
+      ],
+      users: [
+        {
+          name: name,
+          userId: "5e88dfa7676b451ea1d47b01"
+          
+        },
+        {
+          name: this.props.student.name,
+          userId: this.props.student._id
+        }
+      
+      ]
+    }
+    this.props.createChats(reqObj);
+
+  }
+
   render() {
     return (
       <div>
@@ -52,6 +61,14 @@ class ViewStudentProfile extends React.Component {
         </div>
         <div style={{float: 'left', width: '30%', marginTop: '20px', marginLeft: '20px'}}>
           <ViewBio bio={this.props.location.state.student} />
+          <div class="ui form" style={{marginTop: '20px', width: '75%'}}>
+            <div class="field">
+              <textarea rows="2" value ={this.state.message} onChange={this.addMessage}></textarea>
+            </div>
+            <div>
+            <button class="fluid ui button" onClick={this.onClickHandler} >Send Message</button>
+            </div>
+          </div>
         </div>
         <div style={{float: 'left', width: '60%', marginLeft: '20px', marginTop: '20px'}}>
           <div className='ui segment'>
@@ -64,7 +81,7 @@ class ViewStudentProfile extends React.Component {
             Education
             {this.props.location.state.student.education.map(education => {
               return (
-                <ViewEducationItem key={education} education={education} />
+                <ViewEducationItem key={education._id} education={education} />
               );
             })}
           </div>
@@ -72,7 +89,7 @@ class ViewStudentProfile extends React.Component {
             Work Experience
             {this.props.location.state.student.experience.map(experience => {
               return (
-                <ViewExperienceItem key={experience} experience={experience} />
+                <ViewExperienceItem key={experience._id} experience={experience} />
               );
             })}
           </div>
@@ -83,5 +100,4 @@ class ViewStudentProfile extends React.Component {
 }
 
 
-
-export default ViewStudentProfile;
+export default connect(null, { createChats })(ViewStudentProfile);
