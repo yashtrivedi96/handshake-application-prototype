@@ -1,5 +1,5 @@
 import React from 'react'
-import Header from '../Header';
+import CompanyHeader from '../CompanyHeader';
 import MessageWindow from './MessageWindow';
 import 'react-chat-elements/dist/main.css';
 import { ChatList } from 'react-chat-elements'
@@ -25,7 +25,7 @@ class MessageCompany extends React.Component {
         return (
             <div>
                 <div style={{marginBottom: '20px'}}>
-                <Header />
+                <CompanyHeader />
                 </div>
                 <div>
                     <div style={{float: 'left', width: '25%', marginRight: '40px'}}>

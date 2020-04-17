@@ -19,6 +19,7 @@ import StudentProfile from './editStudentProfile/StudentProfile';
 import CompanyProfile from './editCompanyProfile/CompanyProfile';
 import MessageStudent from './chat/MessageStudent';
 import MessageCompany from './chatCompany/MessageCompany';
+import ViewStudentCompany from './viewStudentProfile/ViewStudentCompany';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 const App = () => {
@@ -39,6 +40,7 @@ const App = () => {
         <Route path='/company/myevent' component={SingleEvent} />
         <Route path='/company/post' component={ViewEventEmployer} />  
         <Route path='/student/profile' component={ViewStudentProfile} />
+        <Route path='/company/student' component={ViewStudentCompany} />
         <Route path='/event' component={Event} />
         <Route path='/students' component={Students} />
         <Route path='/my' component={StudentProfile} />

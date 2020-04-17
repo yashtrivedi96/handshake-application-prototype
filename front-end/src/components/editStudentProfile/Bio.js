@@ -34,7 +34,7 @@ class Bio extends React.Component {
     console.log('uploading...');
     fd.append('upl', this.state.selectedFile);
     axios
-      .post(`http://localhost:3000/applications/${id}/photo`, fd)
+      .post(`http://54.237.194.180:3000/applications/${id}/photo`, fd)
       .then(res => {
         if (res.status === 200) {
           this.setState({

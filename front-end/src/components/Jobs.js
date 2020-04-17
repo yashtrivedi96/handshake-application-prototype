@@ -67,7 +67,7 @@ class Jobs extends React.Component {
     console.log('uploading...');
     fd.append('upl', this.state.selectedFile);
     axios
-    .post(`http://localhost:3000/applications/${id}/resume`, fd)
+    .post(`http://54.237.194.180:3000/applications/${id}/resume`, fd)
       .then(res => {
         if (res.status === 200) {
           console.log(res);

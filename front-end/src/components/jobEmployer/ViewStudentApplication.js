@@ -44,7 +44,7 @@ class ViewStudentApplication extends React.Component {
                 </div>
                 <div className='ui segment' style={{width: '45%', float: 'left', marginLeft: '20px', marginTop: '20px'}}>
                     <div>
-                        <Link to={{pathname: '/student/profile', state: { student: this.props.profile }}}><h3>{this.props.location.state.student.name}</h3></Link>
+                        <Link to={{pathname: '/company/student', state: { student: this.props.profile }}}><h3>{this.props.location.state.student.name}</h3></Link>
                     </div>
                     <div>
                         University: {this.props.location.state.student.university}
