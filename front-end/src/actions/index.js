@@ -1,5 +1,13 @@
 import handshakeAPI from '../apis/handshakeAPI';
 
+export const loginStudent = (req) => async dispatch => {
+    const response = await handshakeAPI.post('/students/login', req);
+    dispatch({
+        type: 'STUDENT_LOGIN',
+        payload: response.data
+    })
+}
+
 export const fetchStudentProfile = (id) => async dispatch => {
     const response = await handshakeAPI.get(`/students/${id}`);    
     dispatch({

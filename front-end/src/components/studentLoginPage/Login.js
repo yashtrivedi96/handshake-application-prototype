@@ -1,6 +1,7 @@
 import React from 'react';
-import axios from 'axios';
 import { Redirect } from 'react-router';
+import { connect } from 'react-redux';
+import { loginStudent } from '../../actions';
 
 class Login extends React.Component {
   constructor(props) {
@@ -14,31 +15,34 @@ class Login extends React.Component {
 
   onSubmitHandler = e => {
     e.preventDefault();
-    axios
-      .post(
-        'http://18.206.154.118:8080/api/student/login',
-        {
-          email: this.state.email,
-          password: this.state.password
-        },
-        { headers: { 'Content-Type': 'application/json' } }
-      )
-      .then(res => {
-        if (res.status === 200) {
-          this.setState({ redirect: <Redirect to='/students' /> });
-        } else {
-          console.log(res);
-          this.setState({ error: 'Invalid Credentials' });
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    this.props.loginStudent({email: this.state.email, password: this.state.password});
+    console.log(this.props.student);
+    this.setState({redirect: <Redirect to='/my' />})
+    // axios
+    //   .post(
+    //     'http://18.206.154.118:8080/api/student/login',
+    //     {
+    //       email: this.state.email,
+    //       password: this.state.password
+    //     },
+    //     { headers: { 'Content-Type': 'application/json' } }
+    //   )
+    //   .then(res => {
+    //     if (res.status === 200) {
+    //       this.setState({ redirect: <Redirect to='/students' /> });
+    //     } else {
+    //       console.log(res);
+    //       this.setState({ error: 'Invalid Credentials' });
+    //     }
+    //   })
+    //   .catch(err => {
+    //     console.log(err);
+    //   });
   };
   render() {
     return (
       <div>
-        {this.state.redirect}
+        {this.props.student && this.state.redirect}
         <div style={{ float: 'left', width: '40%', marginTop: '20px' }}>
           <p>Handshake</p>
         </div>
@@ -81,4 +85,14 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+const mapStateToProps = (state) => {
+  if(state.loginStudent == {}) {
+    return {student: undefined}
+  }
+  return {
+    //window.localStorage.setItem("id", state.loginStudent._id);
+    student: state.loginStudent
+  }
+}
+
+export default connect(mapStateToProps, { loginStudent })(Login);

@@ -13,6 +13,7 @@ import filterApplicationsReducer from './filterApplicationsReducer';
 import chatReducer from './chatReducer';
 import messageReducer from './messageReducer';
 import createChatsReducer from './createChatsReducer';
+import studentLoginReducer from './studentLoginReducer';
 
 export default combineReducers({
     profile: profileReducer,
@@ -28,6 +29,7 @@ export default combineReducers({
     applicationsFilteredList: filterApplicationsReducer,
     chats: chatReducer,
     conversation: messageReducer,
-    firstChat: createChatsReducer
+    firstChat: createChatsReducer,
+    loginStudent: studentLoginReducer
 })
 
