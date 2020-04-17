@@ -16,7 +16,7 @@ class Login extends React.Component {
   onSubmitHandler = e => {
     e.preventDefault();
     this.props.loginStudent({email: this.state.email, password: this.state.password});
-    console.log(this.props.student);
+    console.log(" login" ,this.props.student);
     this.setState({redirect: <Redirect to='/my' />})
     // axios
     //   .post(
@@ -40,6 +40,7 @@ class Login extends React.Component {
     //   });
   };
   render() {
+    console.log('student', this.props.student);
     return (
       <div>
         {this.props.student && this.state.redirect}
@@ -86,11 +87,12 @@ class Login extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  if(state.loginStudent == {}) {
-    return {student: undefined}
-  }
+  // if(state.loginStudent == {}) {
+  //   return {student: undefined}
+  // }
+  localStorage.setItem('id', state.loginStudent._id);
+  localStorage.setItem('name', state.loginStudent.name);
   return {
-    //window.localStorage.setItem("id", state.loginStudent._id);
     student: state.loginStudent
   }
 }

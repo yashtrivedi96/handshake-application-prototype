@@ -18,6 +18,7 @@ import Application from './Application';
 import StudentProfile from './editStudentProfile/StudentProfile';
 import CompanyProfile from './editCompanyProfile/CompanyProfile';
 import MessageStudent from './chat/MessageStudent';
+import MessageCompany from './chatCompany/MessageCompany';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 const App = () => {
@@ -43,6 +44,7 @@ const App = () => {
         <Route path='/my' component={StudentProfile} />
         <Route path='/jobs' component={Jobs} />
         <Route path='/message' component={MessageStudent} />
+        <Route path='/company/message' component={MessageCompany} />
       </div>
     </Router>
   )

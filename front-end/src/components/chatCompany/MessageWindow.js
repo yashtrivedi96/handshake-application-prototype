@@ -11,7 +11,7 @@ class MessageWindow extends Component {
   };
 
   typeMessage = (e) => {
-    const name = 'Rachel Green';
+    const name = 'Ralph Lauren';
     this.setState({
       newMessage: {
         text: e.target.value,
@@ -66,7 +66,7 @@ class MessageWindow extends Component {
 
 const mapStateToProps = (state) => {
     console.log(state.conversation);
-    const name = 'Rachel Green'
+    const name = 'Ralph Lauren'
     let list = []
     if(state.conversation.messages) {
         list = state.conversation.messages.map((message) => {

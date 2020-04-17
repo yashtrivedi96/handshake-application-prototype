@@ -6,12 +6,12 @@ import { ChatList } from 'react-chat-elements'
 import { connect } from 'react-redux';
 import { fetchChats, fetchMessages } from '../../actions'
 
-class MessageStudent extends React.Component {
+class MessageCompany extends React.Component {
     state = {chatId: ''}
 
     componentDidMount() {
-        const studentID = '5e996d140c49d423b10b0e68'
-        this.props.fetchChats(studentID);
+        const companyId = '5e99811101ef526dbc11dd51'
+        this.props.fetchChats(companyId);
     }
 
     onClickHandler = (e) => {
@@ -42,9 +42,9 @@ class MessageStudent extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    const studentID = '5e996d140c49d423b10b0e68'
+    const companyId = '5e99811101ef526dbc11dd51'
     const list = state.chats.map((item) => {
-        if(item.users[0].userId != studentID) {
+        if(item.users[0].userId != companyId) {
           return {title: item.users[0].name, subtitle: item.messages[item.messages.length-1].text, id: item._id} 
         } else {
           return {title: item.users[1].name, subtitle: item.messages[item.messages.length-1].text, id: item._id} 
@@ -55,4 +55,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { fetchChats, fetchMessages })(MessageStudent);
+export default connect(mapStateToProps, { fetchChats, fetchMessages })(MessageCompany);

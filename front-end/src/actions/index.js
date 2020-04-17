@@ -116,7 +116,7 @@ export const fetchCompanyEvents = (companyName) => async dispatch => {
 }
 
 export const fetchChats = (studentId) => async dispatch => {
-    const response = await handshakeAPI.get(`/students/${studentId}/chats`);
+    const response = await handshakeAPI.get(`chats/students/${studentId}`);
     dispatch({
         type: 'FETCH_CHATS',
         payload: response.data

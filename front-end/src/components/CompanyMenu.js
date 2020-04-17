@@ -18,7 +18,7 @@ const CompanyMenu = () => {
                     <Link to='/company/job/view' className="item">Job Postings</Link>
                     <Link to='' className="item">Event Postings</Link>
                     <Link to='/students' className="item">Students</Link> 
-                    <Link to='/message' className="item">Messages</Link>
+                    <Link to='/company/message' className="item">Messages</Link>
                     <Link to='/companyprofile' className="item"><img class="ui avatar image" src={usericon}></img></Link>
                 </div>
             </div>
