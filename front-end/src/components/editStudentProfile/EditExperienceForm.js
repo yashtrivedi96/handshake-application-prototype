@@ -1,6 +1,7 @@
 import React from 'react';
-import axios from 'axios';
 import { Dropdown } from 'semantic-ui-react';
+import { connect } from 'react-redux';
+import { updateStudentProfile } from '../../actions';
 
 const companyName = [
   { text: 'Google', value: 'Google' },
@@ -32,12 +33,12 @@ class EditExperienceForm extends React.Component {
   constructor() {
     super();
     this.state = {
-      company_name: '',
-      designation: '',
-      starting_date: '',
-      ending_date: '',
-      company_location: '',
-      work_summary: ''
+      company: '',
+      jobTitle: '',
+      startDate: '',
+      endDate: '',
+      location: '',
+      description: ''
     };
   }
 
@@ -48,85 +49,82 @@ class EditExperienceForm extends React.Component {
   onSave = e => {
     e.preventDefault();
     const data = {
-      company_name:
-        this.state.company_name == ''
-          ? this.props.data.company_name
-          : this.state.company_name,
-      designation:
-        this.state.designation == ''
-          ? this.props.data.designation
-          : this.state.designation,
-      starting_date:
-        this.state.starting_date == ''
-          ? this.props.data.starting_date
-          : this.state.starting_date,
-      ending_date:
-        this.state.ending_date == ''
-          ? this.props.data.ending_date
-          : this.state.ending_date,
-      company_location:
-        this.state.company_location == ''
-          ? this.props.data.company_location
-          : this.state.company_location,
-      work_summary:
-        this.state.work_summary === ''
-          ? this.props.data.work_summary
-          : this.state.work_summary
+      company: this.state.company == '' ? this.props.data.company : this.state.company,
+      jobTitle: this.state.jobTitle == '' ? this.props.data.jobTitle : this.state.jobTitle,
+      startDate: this.state.startDate == '' ? this.props.data.startDate : this.state.startDate,
+      endDate: this.state.endDate == '' ? this.props.data.endDate : this.state.endDate,
+      location: this.state.location == '' ? this.props.data.location : this.state.location,
+      description: this.state.description === '' ? this.props.data.description : this.state.description
     };
     console.log(data);
-    const id = this.props.data.experience_id;
-    axios
-      .put(`http://18.206.154.118:8080/api/student/experience/${id}`, data, {
-        headers: { 'Content-Type': 'application/json' }
-      })
-      .then(res => {
-        console.log(res);
-        if (res.status === 200) {
-          this.props.onUpdateExperience({ ...data, experience_id: id });
-          console.log(res.data.result);
-        } else {
-          console.log(res);
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    const id = this.props.data._id;
+    const list = [...this.props.experience];
+    list.filter((experience) => {
+      if(experience._id === id) {
+        experience.company = data.company;
+        experience.jobTitle = data.jobTitle;
+        experience.startDate = data.startDate;
+        experience.endDate = data.endDate;
+        experience.location = data.location;
+        experience.description = data.description;
+      }
+      return experience;
+    })
+    // axios
+    //   .put(`http://18.206.154.118:8080/api/student/experience/${id}`, data, {
+    //     headers: { 'Content-Type': 'application/json' }
+    //   })
+    //   .then(res => {
+    //     console.log(res);
+    //     if (res.status === 200) {
+    //       this.props.onUpdateExperience({ ...data, experience_id: id });
+    //       console.log(res.data.result);
+    //     } else {
+    //       console.log(res);
+    //     }
+    //   })
+    //   .catch(err => {
+    //     console.log(err);
+    //   });
+    console.log(list);
+    const studentId = '5e87e9c65410160a6a5926e3';
+    this.props.updateStudentProfile(studentId, {experience: list})
     this.props.toggle();
   };
 
   onChangeHandlerCompanyName = (e, { value }) => {
-    this.setState({ company_name: value }, () => {
-      console.log('Dropdown', this.state.company_name);
+    this.setState({ company: value }, () => {
+      console.log('Dropdown', this.state.company);
     });
   };
 
   onChangeHandlerDesignation = (e, { value }) => {
-    this.setState({ designation: value }, () => {
-      console.log('Dropdown', this.state.designation);
+    this.setState({ jobTitle: value }, () => {
+      console.log('Dropdown', this.state.jobTitle);
     });
   };
 
   onChangeHandlerFromDate = (e, { value }) => {
-    this.setState({ starting_date: value }, () => {
-      console.log('Dropdown', this.state.starting_date);
+    this.setState({ startDate: value }, () => {
+      console.log('Dropdown', this.state.startDate);
     });
   };
 
   onChangeHandlerToDate = (e, { value }) => {
-    this.setState({ ending_date: value }, () => {
-      console.log('Dropdown', this.state.ending_date);
+    this.setState({ endDate: value }, () => {
+      console.log('Dropdown', this.state.endDate);
     });
   };
 
   onChangeHandlerCompanyLocation = (e, { value }) => {
-    this.setState({ company_location: value }, () => {
-      console.log('Dropdown', this.state.company_location);
+    this.setState({ location: value }, () => {
+      console.log('Dropdown', this.state.location);
     });
   };
 
   onChangeHandlerWorkSummary = e => {
-    this.setState({ work_summary: e.target.value }, () => {
-      console.log('input', this.state.work_summary);
+    this.setState({ description: e.target.value }, () => {
+      console.log('input', this.state.description);
     });
   };
 
@@ -143,7 +141,7 @@ class EditExperienceForm extends React.Component {
                 search
                 selection
                 options={companyName}
-                value={this.state.company_name}
+                value={this.state.company}
                 onChange={this.onChangeHandlerCompanyName}
               />
             </div>
@@ -155,7 +153,7 @@ class EditExperienceForm extends React.Component {
                 search
                 selection
                 options={designation}
-                value={this.state.designation}
+                value={this.state.jobTitle}
                 onChange={this.onChangeHandlerDesignation}
               />
             </div>
@@ -167,7 +165,7 @@ class EditExperienceForm extends React.Component {
                 search
                 selection
                 options={fromDate}
-                value={this.state.starting_date}
+                value={this.state.startDate}
                 onChange={this.onChangeHandlerFromDate}
               />
             </div>
@@ -180,7 +178,7 @@ class EditExperienceForm extends React.Component {
                   search
                   selection
                   options={toDate}
-                  value={this.state.ending_date}
+                  value={this.state.endDate}
                   onChange={this.onChangeHandlerToDate}
                 />
               </div>
@@ -201,7 +199,7 @@ class EditExperienceForm extends React.Component {
               <label>Work Summary</label>
               <input
                 type='text'
-                value={this.state.cgpa}
+                value={this.state.description}
                 placeholder='Work Summary'
                 onChange={this.onChangeHandlerWorkSummary}
               />
@@ -221,4 +219,10 @@ class EditExperienceForm extends React.Component {
   }
 }
 
-export default EditExperienceForm;
+const mapStateToProps = (state) => {
+  return {
+    experience: state.profile.experience
+  }
+}
+
+export default connect(mapStateToProps, { updateStudentProfile })(EditExperienceForm);

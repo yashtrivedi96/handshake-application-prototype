@@ -185,7 +185,14 @@ class StudentProfile extends React.Component {
                 })}
               </div>
               <div>
-                <button class='fluid ui button'>Add Work Experience</button>
+                {!this.state.showAddExperienceForm && (
+                  <button class='fluid ui button' onClick={this.onAddExperienceClick}>
+                    Add Work Experience
+                  </button>
+                )}
+                {this.state.showAddExperienceForm && (
+                  <AddExperienceForm onAddExperience={this.onAddExperience} toggle={this.onAddExperienceClick} />
+                )}
               </div>
             </div>
           </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import EditExperienceForm from './EditExperienceForm';
+
 class Experience extends React.Component {
   constructor() {
     super();
@@ -39,7 +40,7 @@ class Experience extends React.Component {
       </div>
     );
 }
-};
+
 
   render() {
     return (
@@ -53,5 +54,6 @@ class Experience extends React.Component {
         </div>
       );
   }
+};
 
 export default Experience;
