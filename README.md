@@ -1,2 +1,2 @@
-#Handshake Application Prototype
+Handshake Application Prototype
 
